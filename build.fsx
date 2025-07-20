@@ -26,6 +26,25 @@ open Fake.DotNet
 open Fake.DotNet.Testing
 open Fake.Tools
 open System.IO
+// -----------------------------------------
+let packingTargets = [ "Partas.Fake.Tools.GitCliff" ]
+let testDiscoveryGlob = !!"**/bin/**/*.Tests.dll"
+let solutionName = "Partas.Fake.Tools.GitCliff.sln"
+let description = "Fake bindings for the Tool 'git-cliff'"
+let gitOwner = "shayanhabibi"
+let gitName = "Partas.Fake.Tools.GitCliff"
+let releasePath = "./docs", "RELEASE_NOTES.md"
+let assemblyInfoPath = "Common/AssemblyInfo.fs"
+// Fantomas search paths
+let sourceFiles =
+    !!"**/*.fs"
+    ++ "**/*.fsx"
+    -- "packages/**/*.*"
+    -- "paket-files/**/*.*"
+    -- ".fake/**/*.*"
+    -- "**/obj/**/*.*"
+    -- "**/AssemblyInfo.fs"
+// --------------------------------------------------
 
 Target.initEnvironment ()
 
@@ -66,11 +85,7 @@ module Ops =
     [<Literal>]
     let ReleaseNotes = "ReleaseNotes"
 
-let description = "Fake bindings for the Tool 'git-cliff'"
-
-let gitOwner = "shayanhabibi"
-let gitName = "Partas.Fake.Tools.GitCliff"
-let release = lazy ReleaseNotes.load "docs/RELEASE_NOTES.md"
+let release = lazy ReleaseNotes.load ($"{fst releasePath}/{snd releasePath}")
 
 let apiKey =
     Target.getArguments ()
@@ -83,14 +98,7 @@ let apiKey =
         idx
         |> Option.map (Array.get args))
 
-let sourceFiles =
-    !!"**/*.fs"
-    ++ "**/*.fsx"
-    -- "packages/**/*.*"
-    -- "paket-files/**/*.*"
-    -- ".fake/**/*.*"
-    -- "**/obj/**/*.*"
-    -- "**/AssemblyInfo.fs"
+
 
 Target.create Ops.Format (fun _ ->
     let result =
@@ -134,7 +142,7 @@ Target.create Ops.GitCliff (fun _ ->
 
 // Generate assembly info file with versioning and up-to-date info
 Target.create Ops.AssemblyInfo (fun _ ->
-    let fileName = "Common/AssemblyInfo.fs"
+    let fileName = assemblyInfoPath
 
     AssemblyInfoFile.createFSharp
         fileName
@@ -157,7 +165,7 @@ let dotnet cmd args =
     | _ -> ()
 
 Target.create Ops.Build (fun _ ->
-    "Partas.Fake.Tools.GitCliff.sln"
+    solutionName
     |> DotNet.build (fun p ->
         { p with
             Configuration = DotNet.BuildConfiguration.Release
@@ -167,7 +175,7 @@ Target.create Ops.Build (fun _ ->
                   "Version", release.Value.AssemblyVersion ] }))
 
 Target.create Ops.Test (fun _ ->
-    !!"**/bin/**/*.Tests.dll"
+    testDiscoveryGlob
     |> Testing.Expecto.run (fun p ->
         { p with
             Summary = true
@@ -185,7 +193,7 @@ Target.create Ops.RestoreTools (fun _ ->
         failwith "Failed to restore dotnet tools")
 
 Target.create Ops.Nuget (fun _ ->
-    [ "Partas.Fake.Tools.GitCliff" ]
+    packingTargets
     |> List.iter (
         DotNet.pack (fun p ->
             { p with
@@ -217,10 +225,10 @@ Target.create Ops.PublishLocal (fun _ ->
     ))
 
 Target.create Ops.ReleaseNotes (fun _ ->
-    Git.Staging.stageFile "./docs" "RELEASE_NOTES.md"
+    Git.Staging.stageFile (fst releasePath) (snd releasePath)
     |> function
         | true, _, _ ->
-            Git.FileStatus.getAllFiles "./docs"
+            Git.FileStatus.getAllFiles (fst releasePath)
             |> Seq.iter (function
                 | _, "RELEASE_NOTES.md" ->
                     Git.CommandHelper.directRunGitCommandAndFail
@@ -228,10 +236,12 @@ Target.create Ops.ReleaseNotes (fun _ ->
                         "config --local user.email \"41898282+github-actions[bot]@users.noreply.github.com\""
 
                     Git.CommandHelper.directRunGitCommandAndFail "." "config --local user.name \"GitHub Action\""
-                    Git.Commit.execExtended "./docs" "[skip ci]" "docs: Update RELEASE_NOTES.md"
+                    Git.Commit.execExtended (fst releasePath) "[skip ci]" "docs: Update RELEASE_NOTES.md"
+
                     if Git.Branches.getLocalBranches "." = [] then
                         Git.Branches.pushBranch "." "https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff.git" "master"
-                    else Git.Branches.push "."
+                    else
+                        Git.Branches.push "."
                 | _ -> ())
         | _, _, msg -> Trace.traceImportant msg)
 
