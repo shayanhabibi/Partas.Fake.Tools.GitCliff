@@ -229,7 +229,9 @@ Target.create Ops.ReleaseNotes (fun _ ->
 
                     Git.CommandHelper.directRunGitCommandAndFail "." "config --local user.name \"GitHub Action\""
                     Git.Commit.execExtended "./docs" "[skip ci]" "docs: Update RELEASE_NOTES.md"
-                    Git.Branches.push "."
+                    if Git.Branches.getLocalBranches "." = [] then
+                        Git.Branches.pushBranch "." "https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff.git" "master"
+                    else Git.Branches.push "."
                 | _ -> ())
         | _, _, msg -> Trace.traceImportant msg)
 
