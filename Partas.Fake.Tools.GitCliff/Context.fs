@@ -1,4 +1,4 @@
-﻿module Fake.Tools.GitCliff.Context
+module Fake.Tools.GitCliffContext
 open System
 open FSharp.Json
 
