@@ -435,7 +435,9 @@ module ConfigHelper =
           SortCommits: string
           LinkParsers: LinkParser[]
           LimitCommits: int option
-          RecurseSubmodules: bool option }
+          RecurseSubmodules: bool option
+          IncludePaths: string[]
+          ExcludePaths: string[] }
 
         static member init =
             { ConventionalCommits = None
@@ -455,7 +457,9 @@ module ConfigHelper =
               SortCommits = null
               LinkParsers = null
               LimitCommits = None
-              RecurseSubmodules = None }
+              RecurseSubmodules = None
+              IncludePaths = null
+              ExcludePaths = null }
 
         static member Create
             (
@@ -476,7 +480,9 @@ module ConfigHelper =
                 ?sortCommits: string,
                 ?linkParsers: LinkParser[],
                 ?limitCommits: int,
-                ?recurseSubmodules: bool
+                ?recurseSubmodules: bool,
+                ?includePaths: string[],
+                ?excludePaths: string[]
             ) =
             let defaultString = Option.defaultValue null
 
@@ -503,7 +509,13 @@ module ConfigHelper =
                 linkParsers
                 |> Option.defaultValue null
               LimitCommits = limitCommits
-              RecurseSubmodules = recurseSubmodules }
+              RecurseSubmodules = recurseSubmodules
+              IncludePaths =
+                includePaths
+                |> Option.defaultValue null
+              ExcludePaths =
+                excludePaths
+                |> Option.defaultValue null }
 
     [<CLIMutable; CompiledName("Remote")>]
     type RemoteOptions =
