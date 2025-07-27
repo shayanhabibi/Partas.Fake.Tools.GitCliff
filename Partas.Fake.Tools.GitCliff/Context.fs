@@ -35,7 +35,7 @@ type Footer =
 type Contributor =
     { Username: string option
       PrTitle: string option
-      PrNumber: string option
+      PrNumber: int option
       PrLabels: string list
       IsFirstTime: bool }
 
