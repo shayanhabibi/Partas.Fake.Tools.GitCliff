@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+<h2>
+
+[Unreleased]
+
+</h2>
+
+<h3><!-- 9 -->Other</h3>
+- Merge tag '0.2.3' by @shayanhabibi
+
+
+## [0.2.3] - 2025-07-27
+
+<h3><!-- 5 -->Fixed</h3>
+- Workdir arg produce "--workdir" instead of "---workdir" by @shayanhabibi
+- Workdir arg produce "--workdir" instead of "---workdir" by @shayanhabibi
+
+
 ## [0.2.2] - 2025-07-27
 
 <h3><!-- 1 -->Added</h3>
@@ -49,6 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <h2>New Contributors</h2>
 * @shayanhabibi made their first contribution
 
+[unreleased]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.3..HEAD
+[0.2.3]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.2..0.2.3
 [0.2.2]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.1..0.2.2
 [0.2.1]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.0..0.2.1
 [0.2.0]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.1.0..0.2.0
