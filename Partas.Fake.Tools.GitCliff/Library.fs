@@ -877,7 +877,7 @@ let run (cliParams: CliParams -> CliParams) dir =
           |> makeArg cliParams.Config
           nameof cliParams.ConfigUrl
           |> makeArg cliParams.ConfigUrl
-          "--workdir"
+          "-workdir"
           |> makeArg cliParams.WorkDir
           nameof cliParams.Repository
           |> makeArg cliParams.Repository
