@@ -63,6 +63,20 @@ type Commit =
 
 type GitRepository = { Contributors: Contributor list }
 
+type StatisticLink = {
+    Href: string
+    Text: string
+    Count: int
+}
+
+type Statistics = {
+    CommitCount: int
+    CommitsTimespan: int option
+    ConventionalCommitCount: int
+    Links: Link list option
+    DaysPassedSinceLastRelease: int option
+}
+
 type Context =
     { Version: string option
       Message: string option
@@ -75,6 +89,7 @@ type Context =
       Previous: Context option
       SubmoduleCommits: Map<string, Commit>
       Extra: obj option
+      Statistics: Statistics option
       Github: GitRepository
       Gitlab: GitRepository
       Gitea: GitRepository
