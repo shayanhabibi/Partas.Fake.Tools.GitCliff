@@ -63,19 +63,17 @@ type Commit =
 
 type GitRepository = { Contributors: Contributor list }
 
-type StatisticLink = {
-    Href: string
-    Text: string
-    Count: int
-}
+type StatisticLink =
+    { Href: string
+      Text: string
+      Count: int }
 
-type Statistics = {
-    CommitCount: int
-    CommitsTimespan: int option
-    ConventionalCommitCount: int
-    Links: Link list option
-    DaysPassedSinceLastRelease: int option
-}
+type Statistics =
+    { CommitCount: int
+      CommitsTimespan: int option
+      ConventionalCommitCount: int
+      Links: Link list option
+      DaysPassedSinceLastRelease: int option }
 
 type Context =
     { Version: string option
