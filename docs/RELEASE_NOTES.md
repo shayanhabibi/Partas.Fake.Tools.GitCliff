@@ -14,8 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <h3><!-- 3 -->Changed</h3>
 - Fantomas by @shayanhabibi
 
+
+## [0.2.5] - 2025-07-28
+
 <h3><!-- 5 -->Fixed</h3>
 - Git-cliff 2.10.0 by @shayanhabibi
+
+
+## [0.2.4] - 2025-07-27
+
+<h3><!-- 5 -->Fixed</h3>
 - Added include and exclude paths to GitOptions by @shayanhabibi
 
 <h3><!-- 9 -->Other</h3>
@@ -45,15 +53,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <h3><!-- 5 -->Fixed</h3>
 - Pr_number should be an int by @shayanhabibi
+- Namespace adjustment for context types by @shayanhabibi
 
 
-## [0.2.0] - 2025-07-26
+## [0.2.0] - 2025-07-25
 
 <h3><!-- 0 -->Features</h3>
 - Context serialization and deserialization with records by @shayanhabibi
 
 <h3><!-- 5 -->Fixed</h3>
-- Namespace adjustment for context types by @shayanhabibi
 - Build script release notes fix attempt by @shayanhabibi
 
 <h2>New Contributors</h2>
@@ -73,7 +81,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <h2>New Contributors</h2>
 * @shayanhabibi made their first contribution
 
-[unreleased]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.3..HEAD
+[unreleased]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.5..HEAD
+[0.2.5]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/v0.2.4..0.2.5
+[0.2.4]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.3..v0.2.4
 [0.2.3]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.2..0.2.3
 [0.2.2]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.1..0.2.2
 [0.2.1]: https://github.com/shayanhabibi/Partas.Fake.Tools.GitCliff/compare/0.2.0..0.2.1

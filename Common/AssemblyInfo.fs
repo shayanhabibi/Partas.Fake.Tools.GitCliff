@@ -4,12 +4,12 @@ open System.Reflection
 
 [<assembly: AssemblyTitleAttribute("Partas.Fake.Tools.GitCliff")>]
 [<assembly: AssemblyProductAttribute("Partas.Fake.Tools.GitCliff")>]
-[<assembly: AssemblyVersionAttribute("0.0.1")>]
-[<assembly: AssemblyFileVersionAttribute("0.0.1")>]
+[<assembly: AssemblyVersionAttribute("0.2.5")>]
+[<assembly: AssemblyFileVersionAttribute("0.2.5")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "Partas.Fake.Tools.GitCliff"
     let [<Literal>] AssemblyProduct = "Partas.Fake.Tools.GitCliff"
-    let [<Literal>] AssemblyVersion = "0.0.1"
-    let [<Literal>] AssemblyFileVersion = "0.0.1"
+    let [<Literal>] AssemblyVersion = "0.2.5"
+    let [<Literal>] AssemblyFileVersion = "0.2.5"
