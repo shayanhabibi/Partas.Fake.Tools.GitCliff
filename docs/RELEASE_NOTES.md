@@ -11,7 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 </h2>
 
+<h3><!-- 3 -->Changed</h3>
+- Fantomas by @shayanhabibi
+
 <h3><!-- 5 -->Fixed</h3>
+- Git-cliff 2.10.0 by @shayanhabibi
 - Added include and exclude paths to GitOptions by @shayanhabibi
 
 <h3><!-- 9 -->Other</h3>
